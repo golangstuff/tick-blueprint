@@ -102,7 +102,7 @@
         force_basic_auth: yes
         body: '{"oldPassword": "admin", "newPassword": "{{ grafanapassword }}", "confirmNew": "{{ grafanapassword }}"}'
       retries: 3
-      delay: 5
+      delay: 10
 
     - name: Restart Services
       service:
