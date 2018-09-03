@@ -98,7 +98,7 @@
         method: PUT
         body_format: json
         user: admin
-        passowrd: admin
+        password: admin
         force_basic_auth: yes
         body: '{"oldPassword": "admin", "newPassword": "{{ grafanapassword }}", "confirmNew": "{{ grafanapassword }}"}'
       retries: 3
