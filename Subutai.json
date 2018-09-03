@@ -18,13 +18,13 @@
                 },
                 {
                     "protocol": "tcp",
-                    "domain": "${grafanaDomain}",
+                    "domain": "${domainName2}",
                     "internal-port": "1883",
                     "external-port": "1883"
                 },
                 {
                     "protocol": "http",
-                    "domain": "${grafanaDomain}",
+                    "domain": "${domainName3}",
                     "internal-port": "8086",
                     "external-port": "8086"
                 }
