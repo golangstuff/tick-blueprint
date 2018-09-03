@@ -82,10 +82,8 @@
 
     - name: Set up password for Grafana admin account
       uri:
-        url: http://127.0.0.1:3000/api/user/password
+        url: http://admin:admin@127.0.0.1:3000/api/user/password
         method: PUT
-        user: admin
-        password: admin
         body_format: json
         body: '{\"oldPassword\": \"admin\", \"newPassword\": \""{{ grafanapassword }}"\", \"confirmNew\": \""{{ grafanapassword }}"\"}'
 
