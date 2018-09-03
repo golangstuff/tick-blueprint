@@ -75,20 +75,10 @@
         enabled: yes
         state: started
       with_items:
+        - grafana-server
         - mosquitto
         - influxdb
         - telegraf
-        - grafana-server
-
-    - name: Set up password for Grafana admin account
-      uri:
-        url: http://127.0.0.1:3000/api/user/password
-        method: PUT
-        body_format: json
-        user: admin
-        passowrd: admin
-        force_basic_auth: yes
-        body: '{"oldPassword": "admin", "newPassword": "{{ grafanapassword }}", "confirmNew": "{{ grafanapassword }}"}'
 
     - name: Create InfluxDB database
       influxdb_database:
@@ -101,6 +91,18 @@
         user_password: "{{ influxpassword }}"
         admin: yes
         state: present
+
+    - name: Set up password for Grafana admin account
+      uri:
+        url: http://127.0.0.1:3000/api/user/password
+        method: PUT
+        body_format: json
+        user: admin
+        passowrd: admin
+        force_basic_auth: yes
+        body: '{"oldPassword": "admin", "newPassword": "{{ grafanapassword }}", "confirmNew": "{{ grafanapassword }}"}'
+      retries: 3
+      delay: 5
 
     - name: Restart Services
       service:
